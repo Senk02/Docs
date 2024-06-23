@@ -41,6 +41,18 @@ ExpressLRS now has full bi-directional [MAVLink](https://mavlink.io/en/) support
 
 3. Select the COM port on the GCS, and connect using `460800` baud
 
+## Using MAVLink on PX4
+1. Configure the UART with SER_TEL2_BAUD to `460800 8N1` (If you are using QGroundControl for that it is under the Parameters -> Serial settings)
+2. Configure MavLink with MAV_0_CONFIG to `TELEM2`
+3. Configure MavLink sending rate with MAV_0_RATE to `9600 B/s`
+
+### QGroundControl Setting
+1. In the application settings go to `Common Links` and add a new connection
+2. Set a name and select the serial port (for instance if you are using linux ttyUSB0) and set the baudrate to `460800`
+
+If you are having trouble connecting to QGC it helps to close QGC and disconnect the TX module than connect first the USB and than open QGC. Also you can select `Automatically Connect on Start` if that helps.
+
+
 ## Using MAVLink on INAV / Betaflight
 
 - INAV and Betaflight contain an incomplete implementation of the MAVLink protocol standard (lacking RADIO_STATUS flow control). This causes an INAV/Betaflight aircraft to saturate the bandwidth of a telemetry link using soft flow control, and renders it unusable, ergo breaking support with ExpressLRS MAVLink.
